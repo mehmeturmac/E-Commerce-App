@@ -1,11 +1,10 @@
 import { useQuery } from 'react-query';
-
 import { Grid } from '@chakra-ui/react';
 import Card from '../../components/Card';
-import { productList } from '../../api';
+import { getProductList } from '../../api';
 
 function Products() {
-  const { data, isLoading, error } = useQuery('products', productList);
+  const { data, isLoading, error } = useQuery('products', getProductList);
 
   if (isLoading) {
     return <span>Loading...</span>;

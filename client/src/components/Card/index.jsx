@@ -5,7 +5,7 @@ import { Box, Image, Button } from '@chakra-ui/react';
 function Card({ item }) {
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="3">
-      <Link to="#">
+      <Link to={`product/${item._id}`}>
         <Image src={item.photos[0]} alt={item.title} loading="lazy" />
         <Box p="6">
           <Box d="flex" alignItems="baseline">

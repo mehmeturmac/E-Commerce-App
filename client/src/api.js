@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-export const productList = async () => {
-  const { data } = await axios('http://localhost:4000/product');
+const url = process.env.REACT_APP_BASE_ENDPOINT;
+
+export const getProductList = async () => {
+  const { data } = await axios(`${url}/product`);
+  return data;
+};
+
+export const getProduct = async (product_id) => {
+  const { data } = await axios(`${url}/product/${product_id}`);
   return data;
 };
