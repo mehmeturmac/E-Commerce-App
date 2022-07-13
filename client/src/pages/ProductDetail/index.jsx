@@ -29,7 +29,7 @@ function ProductDetail() {
       <Text>{moment(data.createdAt).format('DD/MM/YYYY')}</Text>
       <Text>{data.description}</Text>
       <Box margin="10">
-        <ImageGalery items={images} />
+        <ImageGalery showPlayButton={false} items={images} />
       </Box>
     </div>
   );
