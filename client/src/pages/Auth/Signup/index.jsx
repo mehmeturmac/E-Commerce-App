@@ -3,8 +3,11 @@ import { useFormik } from 'formik';
 import { Flex, Box, Heading, FormControl, FormLabel, Input, Button, Alert } from '@chakra-ui/react';
 import validationSchema from './validations';
 import { fetchRegister } from '../../../api';
+import { useAuth } from '../../../contexts/AuthContext';
 
 function Signup() {
+  const { login } = useAuth();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -15,6 +18,7 @@ function Signup() {
     onSubmit: async (values, bag) => {
       try {
         const registerResponse = await fetchRegister({ email: values.email, password: values.password });
+        login(registerResponse);
       } catch (error) {
         bag.setErrors({ general: error.response.data.message });
       }

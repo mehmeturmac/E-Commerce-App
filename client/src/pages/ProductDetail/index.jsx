@@ -23,9 +23,7 @@ function ProductDetail() {
   return (
     <div>
       <Button colorScheme="pink">Add to basket</Button>
-      <Text as="h2" fontSize="2xl">
-        {data.title}
-      </Text>
+      <Text fontSize="2xl">{data.title}</Text>
       <Text>{moment(data.createdAt).format('DD/MM/YYYY')}</Text>
       <Text>{data.description}</Text>
       <Box margin="10">

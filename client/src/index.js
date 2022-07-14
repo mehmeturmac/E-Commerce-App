@@ -8,6 +8,9 @@ import './reset.css';
 
 import App from './App';
 
+// Contexts
+import { AuthProvider } from './contexts/AuthContext';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -22,7 +25,9 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ChakraProvider>
     </QueryClientProvider>
   </BrowserRouter>
