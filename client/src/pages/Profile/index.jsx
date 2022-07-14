@@ -3,9 +3,9 @@ import { Text, Button } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 function Profile({ history }) {
-  const { user, logout } = useAuth();
-
   const navigate = useNavigate();
+
+  const { user, logout } = useAuth();
 
   const handleLogout = async () => {
     logout();
