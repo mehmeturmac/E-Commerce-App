@@ -2,10 +2,10 @@ import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { Grid, Box, Flex, Button } from '@chakra-ui/react';
 import Card from '../../components/Card';
-import { getProductList } from '../../api';
+import { fetchProductList } from '../../api';
 
 function Products() {
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery('products', getProductList, {
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery('products', fetchProductList, {
     getNextPageParam: (lastGroup, allGroups) => {
       const morePagesExist = lastGroup.length === 12;
       if (!morePagesExist) {

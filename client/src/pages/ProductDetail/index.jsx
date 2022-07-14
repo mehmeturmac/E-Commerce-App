@@ -2,13 +2,13 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import ImageGalery from 'react-image-gallery';
 import moment from 'moment';
-import { getProduct } from '../../api';
+import { fetchProduct } from '../../api';
 import { Box, Button, Text } from '@chakra-ui/react';
 
 function ProductDetail() {
   const { product_id } = useParams();
 
-  const { data, isLoading, error } = useQuery(['product', product_id], () => getProduct(product_id));
+  const { data, isLoading, error } = useQuery(['product', product_id], () => fetchProduct(product_id));
 
   if (isLoading) {
     return <span>Loading...</span>;
