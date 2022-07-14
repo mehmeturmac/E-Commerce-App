@@ -28,6 +28,7 @@ function Signup() {
       }
     },
   });
+
   return (
     <div>
       <Flex align="center" width="full" justifyContent="center">
