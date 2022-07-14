@@ -36,12 +36,11 @@ function Signup() {
           <Box textAlign="center">
             <Heading>Sing Up</Heading>
           </Box>
-          <Box my={5}>{formik.errors.general && <Alert status="error">{formik.errors.general}</Alert>}</Box>
           <Box my={5} textAlign="center">
             <form onSubmit={formik.handleSubmit}>
               <FormControl>
                 <FormLabel>E-mail</FormLabel>
-                <Input name="email" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} isInvalid={formik.touched.email && formik.errors.email} />
+                <Input name="email" type="email" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} isInvalid={formik.touched.email && formik.errors.email} />
               </FormControl>
               <FormControl mt={4}>
                 <FormLabel>Password</FormLabel>
@@ -70,6 +69,7 @@ function Signup() {
               </Button>
             </form>
           </Box>
+          <Box my={5}>{formik.errors.general && <Alert status="error">{formik.errors.general}</Alert>}</Box>
         </Box>
       </Flex>
     </div>
