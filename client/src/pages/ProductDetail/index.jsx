@@ -4,10 +4,12 @@ import ImageGalery from 'react-image-gallery';
 import moment from 'moment';
 import { fetchProduct } from '../../api';
 import { Box, Button, Text } from '@chakra-ui/react';
+import { useAuth } from '../../contexts/AuthContext';
 import { useBasket } from '../../contexts/BasketContext';
 
 function ProductDetail() {
   const { product_id } = useParams();
+  const { loggenIn } = useAuth();
   const { items, addToBasket } = useBasket();
 
   const { data, isLoading, error } = useQuery(['product', product_id], () => fetchProduct(product_id));
@@ -25,11 +27,14 @@ function ProductDetail() {
 
   return (
     <div>
-      <Button colorScheme={findBasketItem ? 'pink' : 'green'} onClick={() => addToBasket(data, findBasketItem)}>
-        {findBasketItem ? 'Remove from basket' : 'Add to basket'}
-      </Button>
+      {loggenIn && (
+        <Button colorScheme={findBasketItem ? 'pink' : 'green'} onClick={() => addToBasket(data, findBasketItem)}>
+          {findBasketItem ? 'Remove from basket' : 'Add to basket'}
+        </Button>
+      )}
       <Text fontSize="2xl">{data.title}</Text>
-      <Text>{moment(data.createdAt).format('DD/MM/YYYY')}</Text>
+      <Text fontSize="small">{moment(data.createdAt).format('DD/MM/YYYY')}</Text>
+      <Text fontSize="2xl">{data.price}</Text>
       <Text>{data.description}</Text>
       <Box margin="10">
         <ImageGalery showPlayButton={false} items={images} />

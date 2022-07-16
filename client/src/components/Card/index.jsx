@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Box, Image, Button } from '@chakra-ui/react';
 import { useBasket } from '../../contexts/BasketContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Card({ item }) {
+  const { loggedIn } = useAuth();
   const { items, addToBasket } = useBasket();
   const findBasketItem = items.find((basket_item) => basket_item._id === item._id);
 
@@ -21,9 +23,11 @@ function Card({ item }) {
           <Box>{item.price}</Box>
         </Box>
       </Link>
-      <Button colorScheme={findBasketItem ? 'pink' : 'green'} variant="solid" onClick={() => addToBasket(item, findBasketItem)}>
-        {findBasketItem ? 'Remove from basket' : 'Add to basket'}
-      </Button>
+      {loggedIn && (
+        <Button colorScheme={findBasketItem ? 'pink' : 'green'} variant="solid" onClick={() => addToBasket(item, findBasketItem)}>
+          {findBasketItem ? 'Remove from basket' : 'Add to basket'}
+        </Button>
+      )}
     </Box>
   );
 }

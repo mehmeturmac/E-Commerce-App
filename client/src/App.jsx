@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import ProtectedRoute from './pages/ProtectedRoute';
+import ProtectedRoutes from './pages/ProtectedRoutes';
 
 import Navbar from './components/Navbar';
 import Signin from './pages/Auth/Signin';
@@ -11,6 +11,7 @@ import ProductDetail from './pages/ProductDetail';
 import Profile from './pages/Profile';
 import Basket from './pages/Basket';
 import Error404 from './pages/Error404';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -25,8 +26,11 @@ function App() {
           <Route path="/basket" element={<Basket />} />
           <Route path="*" element={<Error404 />} />
 
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoutes allowedRoles={['user', 'admin']} />}>
             <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route element={<ProtectedRoutes allowedRoles={['admin']} />}>
+            <Route path="/admin/*" element={<Admin />} />
           </Route>
         </Routes>
       </div>
