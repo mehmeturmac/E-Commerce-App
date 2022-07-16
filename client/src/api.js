@@ -53,3 +53,8 @@ export const postOrder = async (input) => {
   const { data } = await axios.post(`${url}/order`, input);
   return data;
 };
+
+export const fetchOrders = async () => {
+  const { data } = await axios.get(`${url}/order`);
+  return data;
+};
