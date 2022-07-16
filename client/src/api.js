@@ -48,3 +48,8 @@ export const fetchLogout = async () => {
   });
   return data;
 };
+
+export const postOrder = async (input) => {
+  const { data } = await axios.post(`${url}/order`, input);
+  return data;
+};
