@@ -58,3 +58,8 @@ export const fetchOrders = async () => {
   const { data } = await axios.get(`${url}/order`);
   return data;
 };
+
+export const deleteProduct = async (product_id) => {
+  const { data } = await axios.delete(`${url}/product/${product_id}`);
+  return data;
+};
