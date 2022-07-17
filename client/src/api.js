@@ -27,6 +27,11 @@ export const fetchProduct = async (product_id) => {
   return data;
 };
 
+export const postProduct = async (input) => {
+  const { data } = await axios.post(`${url}/product`, input);
+  return data;
+};
+
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(`${url}/product/${product_id}`);
   return data;

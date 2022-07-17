@@ -1,5 +1,5 @@
 import { useAuth } from '../../contexts/AuthContext';
-import { Text, Button } from '@chakra-ui/react';
+import { Text, Button, Container } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 function Profile({ history }) {
@@ -13,14 +13,16 @@ function Profile({ history }) {
   };
 
   return (
-    <div>
+    <Container maxW="7xl">
       <Text fontSize={22}>Profile</Text>
-      <code>{JSON.stringify(user)}</code>
+      <br />
+      <Text>Role : {user.role}</Text>
+      <Text>Email: {user.email}</Text>
       <br />
       <Button colorScheme="pink" variant="solid" onClick={handleLogout}>
         Logout
       </Button>
-    </div>
+    </Container>
   );
 }
 

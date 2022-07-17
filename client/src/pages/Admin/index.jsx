@@ -1,38 +1,36 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import styles from './styles.module.css';
-import { Box } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 
-import Home from './Home';
 import Orders from './Orders';
 import Products from './Products';
 import ProductDetail from './ProductDetail';
+import NewProduct from './NewProduct';
 
 function Admin() {
   return (
-    <div>
+    <Container maxW="7xl">
       <nav>
         <ul className={styles.adminmenu}>
           <li>
-            <Link to="/admin">Home</Link>
+            <Link to="/admin/products">Products</Link>
           </li>
           <li>
             <Link to="/admin/orders">Orders</Link>
-          </li>
-          <li>
-            <Link to="/admin/products">Products</Link>
           </li>
         </ul>
       </nav>
 
       <Box mt={10}>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Products />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:product_id" element={<ProductDetail />} />
+          <Route path="/products/new" element={<NewProduct />} />
         </Routes>
       </Box>
-    </div>
+    </Container>
   );
 }
 

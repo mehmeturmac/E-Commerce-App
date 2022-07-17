@@ -1,6 +1,6 @@
 import React from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { Grid, Box, Flex, Button } from '@chakra-ui/react';
+import { Grid, Box, Flex, Button, Container } from '@chakra-ui/react';
 import Card from '../../components/Card';
 import { fetchProductList } from '../../api';
 
@@ -24,7 +24,7 @@ function Products() {
   }
 
   return (
-    <div>
+    <Container maxW="7xl">
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
         {data.pages.map((group, i) => (
           <React.Fragment key={i}>
@@ -41,7 +41,7 @@ function Products() {
           {isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load More' : 'Nothing more to load'}
         </Button>
       </Flex>
-    </div>
+    </Container>
   );
 }
 

@@ -1,28 +1,19 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useMutation } from 'react-query';
 import { Formik, FieldArray } from 'formik';
-import { fetchProduct, updateProduct } from '../../../api';
+import { postProduct } from '../../../api';
 import { Text, Box, FormControl, FormLabel, Input, Textarea, Button } from '@chakra-ui/react';
 import { AlertDialog, AlertDialogBody, AlertDialogContent, useDisclosure } from '@chakra-ui/react';
 import validationSchema from './validations';
 
-function ProductDetail() {
-  const { product_id } = useParams();
-  const { data, isLoading, error } = useQuery(['adminProduct', product_id], () => fetchProduct(product_id));
+function NewProduct() {
+  const postProductMutation = useMutation(postProduct);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-
-  if (error) {
-    return <span>Error: {error.message}</span>;
-  }
 
   const handleSubmit = async (values) => {
     try {
-      await updateProduct(values, product_id);
+      const newPhotos = JSON.stringify(values.photos);
+      await postProductMutation.mutate({ ...values, photos: newPhotos });
       onOpen();
       setTimeout(() => onClose(), 1500);
     } catch (error) {
@@ -35,10 +26,10 @@ function ProductDetail() {
       <Text fontSize="2xl">Edit</Text>
       <Formik
         initialValues={{
-          title: data.title,
-          description: data.description,
-          price: data.price,
-          photos: data.photos,
+          title: '',
+          description: '',
+          price: '',
+          photos: [],
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -106,7 +97,7 @@ function ProductDetail() {
                 </FormControl>
                 <FormControl mt={4}>
                   <Button mt={4} width="full" type="submit" isLoading={isSubmitting} colorScheme="green">
-                    Update
+                    Save
                   </Button>
                 </FormControl>
               </form>
@@ -116,11 +107,11 @@ function ProductDetail() {
       </Formik>
       <AlertDialog size="xs" isOpen={isOpen} onClose={onClose}>
         <AlertDialogContent alignItems="center">
-          <AlertDialogBody>Successfully updated</AlertDialogBody>
+          <AlertDialogBody>Successfully added</AlertDialogBody>
         </AlertDialogContent>
       </AlertDialog>
     </div>
   );
 }
 
-export default ProductDetail;
+export default NewProduct;

@@ -15,7 +15,7 @@ import Admin from './pages/Admin';
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar />
       <div id="content">
         <Routes>
@@ -34,7 +34,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-    </>
+    </div>
   );
 }
 

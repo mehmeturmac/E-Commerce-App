@@ -1,8 +1,11 @@
 .nav {
+  border-bottom: solid 1px #e2e8f0;
+}
+
+.container {
   padding: 13px;
   display: flex;
   justify-content: space-between;
-  border-bottom: solid 1px #e2e8f0;
   line-height: 2px;
   align-items: center;
 }
@@ -13,7 +16,7 @@
 
 .nav .left .menu {
   display: flex;
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 .nav .left .menu li a {
@@ -29,7 +32,7 @@
   color: #000;
 }
 
-.nav .right a:first-child {
+.nav .right button {
   margin-right: 5px;
 }
 

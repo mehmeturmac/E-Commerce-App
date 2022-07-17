@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { fetchOrders } from '../../../api';
-import { Table, Thead, Tbody, Tr, Th, Td, TableCaption, Text } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, Text } from '@chakra-ui/react';
 
 function Orders() {
   const { isLoading, error, data } = useQuery('orders', fetchOrders);
@@ -20,7 +20,6 @@ function Orders() {
         Orders
       </Text>
       <Table variant="simple">
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
           <Tr>
             <Th>User</Th>

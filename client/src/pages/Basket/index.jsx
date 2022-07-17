@@ -17,6 +17,13 @@ import {
   FormControl,
   FormLabel,
   Textarea,
+  Container,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Td,
+  Tbody,
 } from '@chakra-ui/react';
 import { useBasket } from '../../contexts/BasketContext';
 import { postOrder } from '../../api';
@@ -38,25 +45,38 @@ function Basket() {
   };
 
   return (
-    <Box p={5}>
+    <Container maxW="7xl">
       {items.length < 1 && <Alert status="warning">You have no items in your basket.</Alert>}
       {items.length > 0 && (
         <>
-          <ul>
-            {items.map((item) => (
-              <li key={item._id} style={{ marginBottom: 15 }}>
-                <Link to={`/product/${item._id}`}>
-                  <Text fontSize={18}>
-                    {item.title} - {item.price}
-                  </Text>
-                  <Image htmlWidth={200} loading="lazy" src={item.photos[0]} alt="basket item" />
-                </Link>
-                <Button mt={2} size="sm" colorScheme="pink" onClick={() => removeFromBasket(item._id)}>
-                  Remove from basket
-                </Button>
-              </li>
-            ))}
-          </ul>
+          <Text fontSize="xl" p={5}>
+            Basket
+          </Text>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Title</Th>
+                <Th>Price</Th>
+                <Th>Action</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {items.map((item) => (
+                <Tr key={item._id}>
+                  <Td>
+                    <Link to={`/product/${item._id}`}>{item.title}</Link>
+                  </Td>
+                  <Td>{item.price}</Td>
+                  <Td>
+                    <Button mt={2} size="sm" colorScheme="pink" onClick={() => removeFromBasket(item._id)}>
+                      Remove from basket
+                    </Button>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+
           <Box mt={10}>
             <Text fontSize={22}>Total: {total}</Text>
           </Box>
@@ -84,7 +104,7 @@ function Basket() {
           </Modal>
         </>
       )}
-    </Box>
+    </Container>
   );
 }
 

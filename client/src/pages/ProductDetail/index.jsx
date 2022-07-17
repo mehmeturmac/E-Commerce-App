@@ -3,13 +3,13 @@ import { useQuery } from 'react-query';
 import ImageGalery from 'react-image-gallery';
 import moment from 'moment';
 import { fetchProduct } from '../../api';
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Text, Container } from '@chakra-ui/react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useBasket } from '../../contexts/BasketContext';
 
 function ProductDetail() {
   const { product_id } = useParams();
-  const { loggenIn } = useAuth();
+  const { loggedIn } = useAuth();
   const { items, addToBasket } = useBasket();
 
   const { data, isLoading, error } = useQuery(['product', product_id], () => fetchProduct(product_id));
@@ -26,8 +26,8 @@ function ProductDetail() {
   const images = data.photos.map((url) => ({ original: url }));
 
   return (
-    <div>
-      {loggenIn && (
+    <Container maxW="7xl">
+      {loggedIn && (
         <Button colorScheme={findBasketItem ? 'pink' : 'green'} onClick={() => addToBasket(data, findBasketItem)}>
           {findBasketItem ? 'Remove from basket' : 'Add to basket'}
         </Button>
@@ -39,7 +39,7 @@ function ProductDetail() {
       <Box margin="10">
         <ImageGalery showPlayButton={false} items={images} />
       </Box>
-    </div>
+    </Container>
   );
 }
 

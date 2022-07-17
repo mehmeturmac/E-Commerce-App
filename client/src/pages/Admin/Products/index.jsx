@@ -36,9 +36,15 @@ function Products() {
 
   return (
     <div>
-      <Text fontSize="xl" p={5}>
-        Products
-      </Text>
+      <Flex justifyContent="space-between" alignItems="center">
+        <Text fontSize="xl" p={5}>
+          Products
+        </Text>
+        <Link to="/admin/products/new">
+          <Button mr={2}>New</Button>
+        </Link>
+      </Flex>
+
       <Table variant="simple">
         <Thead>
           <Tr>
