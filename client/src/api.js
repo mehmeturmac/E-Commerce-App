@@ -27,6 +27,16 @@ export const fetchProduct = async (product_id) => {
   return data;
 };
 
+export const deleteProduct = async (product_id) => {
+  const { data } = await axios.delete(`${url}/product/${product_id}`);
+  return data;
+};
+
+export const updateProduct = async (input, product_id) => {
+  const { data } = await axios.put(`${url}/product/${product_id}`, input);
+  return data;
+};
+
 export const fetchRegister = async (input) => {
   const { data } = await axios.post(`${url}/auth/register`, input);
   return data;
@@ -56,10 +66,5 @@ export const postOrder = async (input) => {
 
 export const fetchOrders = async () => {
   const { data } = await axios.get(`${url}/order`);
-  return data;
-};
-
-export const deleteProduct = async (product_id) => {
-  const { data } = await axios.delete(`${url}/product/${product_id}`);
   return data;
 };

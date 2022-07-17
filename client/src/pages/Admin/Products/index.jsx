@@ -61,7 +61,7 @@ function Products() {
                   <Td>
                     <ButtonGroup>
                       <Button colorScheme="teal" size="sm" variant="outline">
-                        <Link to="/">Edit</Link>
+                        <Link to={`/admin/products/${item._id}`}>Edit</Link>
                       </Button>
 
                       <Button colorScheme="red" size="sm" variant="outline" id={item._id} onClick={handleDeleteClick}>

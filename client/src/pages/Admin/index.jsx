@@ -5,6 +5,7 @@ import { Box } from '@chakra-ui/react';
 import Home from './Home';
 import Orders from './Orders';
 import Products from './Products';
+import ProductDetail from './ProductDetail';
 
 function Admin() {
   return (
@@ -28,6 +29,7 @@ function Admin() {
           <Route exact path="/" element={<Home />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/:product_id" element={<ProductDetail />} />
         </Routes>
       </Box>
     </div>
